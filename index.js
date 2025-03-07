@@ -846,6 +846,7 @@ const runTests = async () => {
     // we still set the output explicitly
     core.setOutput('dashboardUrl', resultsUrl) // deprecated and retained for backward compatibility
     core.setOutput('resultsUrl', resultsUrl) // replacement for dashboardUrl
+    core.setOutput('totalFailed', testResults.totalFailed)
 
     if (testResults.totalFailed) {
       return Promise.reject(
