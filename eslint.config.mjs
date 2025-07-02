@@ -1,6 +1,6 @@
 import globals from 'globals'
 import pluginJs from '@eslint/js'
-import pluginCypress from 'eslint-plugin-cypress/flat'
+import pluginCypress from 'eslint-plugin-cypress'
 import stylistic from '@stylistic/eslint-plugin'
 
 export default [
@@ -8,26 +8,33 @@ export default [
   pluginCypress.configs.recommended,
   {
     name: 'global-ignores',
-    ignores: ['dist/', 'examples/nextjs/src/app/']
+    ignores: [
+      'dist/',
+      'examples/component-tests/dist/',
+      'examples/nextjs/.next/',
+      'examples/nextjs/src/app/',
+      'examples/wait-on-vite/dist/',
+      'examples/**/.pnp.*',
+    ],
   },
   {
     name: 'all-js',
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
-    }
+        ...globals.node,
+      },
+    },
   },
   {
-    name: 'examples-style',
-    files: ['examples/**/*.js'],
+    name: 'style',
+    files: ['eslint.config.mjs', 'examples/**/*.js'],
     ...stylistic.configs.recommended,
     rules: {
       '@stylistic/indent': ['error', 2],
       '@stylistic/comma-dangle': ['error', 'always-multiline'],
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
-    }
-  }
+    },
+  },
 ]

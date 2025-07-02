@@ -8,12 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-
   basic:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, ubuntu-24.04, windows-2022, macos-14]
+        os: [ubuntu-22.04, ubuntu-24.04, windows-2025, macos-15]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
